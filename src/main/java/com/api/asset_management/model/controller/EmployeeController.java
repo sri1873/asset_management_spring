@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.asset_management.model.Employee;
+import com.api.asset_management.model.Item;
 import com.api.asset_management.model.services.EmployeeService;
 
 @RestController
@@ -42,4 +43,9 @@ public class EmployeeController {
 	//	public Employee updateEmployeeById(@PathVariable String employeeId) {
 	//		return employeeService.updateEmployeeById(employeeId);
 	//	}
+
+	@GetMapping("/getAllAssignedItems/{employee_id}")
+	public Item getAllAssignedItems(@PathVariable String employeeId) {
+		return employeeService.getAllAssignedItems(employeeId);
+	}
 }

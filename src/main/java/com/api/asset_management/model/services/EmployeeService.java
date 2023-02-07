@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.asset_management.model.Employee;
+import com.api.asset_management.model.Item;
 import com.api.asset_management.model.repository.EmployeeRepository;
 
 import lombok.AllArgsConstructor;
@@ -39,5 +40,9 @@ public class EmployeeService {
 
 	public void addEmployee(Employee emp) {
 		employeeRepository.save(emp);
+	}
+
+	public Item getAllAssignedItems(String employeeId) {
+		return employeeRepository.assignedItems(employeeId);
 	}
 }

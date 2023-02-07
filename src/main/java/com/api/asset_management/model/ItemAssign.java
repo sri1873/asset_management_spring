@@ -34,4 +34,8 @@ public class ItemAssign {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
 	private Employee employee;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "item_id", referencedColumnName = "itemId")
+	private Item item;
 }
