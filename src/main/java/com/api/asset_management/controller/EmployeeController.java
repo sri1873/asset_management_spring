@@ -1,6 +1,8 @@
-package com.api.asset_management.model.controller;
+package com.api.asset_management.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.asset_management.model.Employee;
 import com.api.asset_management.model.Item;
-import com.api.asset_management.model.services.EmployeeService;
+import com.api.asset_management.payload.EmployeeRequest;
+import com.api.asset_management.services.EmployeeService;
 
 @RestController
 public class EmployeeController {
@@ -24,27 +27,27 @@ public class EmployeeController {
 		return employeeService.getAllEmployee();
 	}
 
-	@GetMapping("/getAllEmployeeById/{employee_id}")
+	@GetMapping("/getAllEmployeeById/{employeeId}")
 	public Employee getAllEmployeeById(@PathVariable String employeeId) {
 		return employeeService.getAllEmployeeById(employeeId);
 	}
 
 	@PostMapping("/addEmployee")
-	public void addEmployee(@RequestBody Employee emp) {
+	public void addEmployee(@Valid @RequestBody EmployeeRequest emp) {
 		employeeService.addEmployee(emp);
 	}
 
-	@DeleteMapping("/deleteEmployee/{employee_id}")
+	@DeleteMapping("/deleteEmployee/{employeed}")
 	public Employee deleteEmployee(@PathVariable String employeeId) {
 		return employeeService.deleteEmployee(employeeId);
 	}
 
-	//	@PutMapping("/updateEmployeeById/{employee_id}")
+	//	@PutMapping("/updateEmployeeById/{employeeId}")
 	//	public Employee updateEmployeeById(@PathVariable String employeeId) {
 	//		return employeeService.updateEmployeeById(employeeId);
 	//	}
 
-	@GetMapping("/getAllAssignedItems/{employee_id}")
+	@GetMapping("/getAllAssignedItems/{employeeId}")
 	public Item getAllAssignedItems(@PathVariable String employeeId) {
 		return employeeService.getAllAssignedItems(employeeId);
 	}

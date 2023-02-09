@@ -1,5 +1,6 @@
 package com.api.asset_management.model;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,17 +21,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
+@Builder
 public class ItemAssign {
 	@Id
+	@Builder.Default
 	private UUID assignmentId = UUID.randomUUID();
 	@Column(nullable = false)
-	private long dateAssigned;
+	private LocalDate dateAssigned;
 	@Column(nullable = false)
 	private String remarks;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", referencedColumnName = "userId")
-	private AssetUser assetUser;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_id", referencedColumnName = "employeeId")

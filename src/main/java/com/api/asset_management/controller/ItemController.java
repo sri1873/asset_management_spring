@@ -1,7 +1,9 @@
-package com.api.asset_management.model.controller;
+package com.api.asset_management.controller;
 
 import java.util.List;
 import java.util.UUID;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.asset_management.model.Item;
-import com.api.asset_management.model.services.ItemService;
+import com.api.asset_management.payload.ItemRequest;
+import com.api.asset_management.services.ItemService;
 
 @RestController
 public class ItemController {
@@ -25,17 +28,17 @@ public class ItemController {
 		return itemService.getAllItem();
 	}
 
-	@GetMapping("/getItemById/{item_id}")
+	@GetMapping("/getItemById/{itemId}")
 	public Item getItemById(@PathVariable UUID itemId) {
 		return itemService.getItemById(itemId);
 	}
 
 	@PostMapping("/addItem")
-	public void addItem(@RequestBody Item item) {
+	public void addItem(@Valid @RequestBody ItemRequest item) {
 		itemService.addItem(item);
 	}
 
-	@DeleteMapping("/deleteItem/{item_id}")
+	@DeleteMapping("/deleteItem/{itemId}")
 	public Item addItem(@PathVariable UUID itemId) {
 		return itemService.deleteItem(itemId);
 	}

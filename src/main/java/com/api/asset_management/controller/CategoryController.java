@@ -1,7 +1,9 @@
-package com.api.asset_management.model.controller;
+package com.api.asset_management.controller;
 
 import java.util.List;
 import java.util.UUID;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.asset_management.model.Category;
-import com.api.asset_management.model.services.CategoryService;
+import com.api.asset_management.payload.CategoryRequest;
+import com.api.asset_management.services.CategoryService;
 
 @RestController
 public class CategoryController {
@@ -25,18 +28,18 @@ public class CategoryController {
 		return categoryService.getAllCategory();
 	}
 
-	@GetMapping("/getCategoryById/{category_id}")
+	@GetMapping("/getCategoryById/{categoryId}")
 	public Category getCategoryById(@PathVariable UUID categoryId) {
 		return categoryService.getCategoryById(categoryId);
 	}
 
 	@PostMapping("/addCategory")
-	public void addCategory(@RequestBody Category category) {
+	public void addCategory(@Valid @RequestBody CategoryRequest category) {
 		categoryService.addCategory(category);
 	}
 
-	@DeleteMapping("/deleteCategory/{category_id}")
-	public Category deleteCategory(@PathVariable UUID categoryId) {
-		return categoryService.deleteCategory(categoryId);
+	@DeleteMapping("/deleteCategory/{categoryId}")
+	public void deleteCategory(@PathVariable UUID categoryId) {
+		categoryService.deleteCategory(categoryId);
 	}
 }

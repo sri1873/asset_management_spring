@@ -1,4 +1,4 @@
-package com.api.asset_management.model.repository;
+package com.api.asset_management.repository;
 
 import java.util.UUID;
 
@@ -10,9 +10,9 @@ import com.api.asset_management.model.Department;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, UUID> {
-	@Query(value = "SELECT * FROM department d where d.department_id ==?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM department d where d.department_id =?1", nativeQuery = true)
 	Department findByUuid(UUID departmentId);
 
-	@Query(value = "DELETE FROM department d where d.department_id ==?1", nativeQuery = true)
+	@Query(value = "DELETE FROM department d where d.department_id =?1", nativeQuery = true)
 	void deleteByUuid(UUID departmentId);
 }

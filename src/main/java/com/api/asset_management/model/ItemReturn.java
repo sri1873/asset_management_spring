@@ -1,5 +1,6 @@
 package com.api.asset_management.model;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,12 +21,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
+@Builder
 public class ItemReturn {
 
 	@Id
+	@Builder.Default
 	private UUID retrivalId = UUID.randomUUID();
 	@Column(nullable = false)
-	private long dateReturned;
+	private LocalDate dateReturned;
 	@Column(nullable = false)
 	private String remarks;
 	private String status;

@@ -1,4 +1,4 @@
-package com.api.asset_management.model.repository;
+package com.api.asset_management.repository;
 
 import java.util.UUID;
 
@@ -10,9 +10,9 @@ import com.api.asset_management.model.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, UUID> {
-	@Query(value = "SELECT * FROM category c where c.category_id ==?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM category c where c.category_id =?1", nativeQuery = true)
 	Category findByUuid(UUID categoryId);
 
-	@Query(value = "DELETE FROM category c where c.category_id ==?1", nativeQuery = true)
+	@Query(value = "DELETE FROM category c where c.category_id =?1", nativeQuery = true)
 	void deleteByUuid(UUID categoryId);
 }

@@ -1,5 +1,6 @@
 package com.api.asset_management.model;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -7,10 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +21,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
+@Builder
 public class Item {
 	@Id
+	@Builder.Default
 	private UUID itemId = UUID.randomUUID();
 	@Column(nullable = false)
 	private String itemName;
@@ -30,9 +34,9 @@ public class Item {
 	@Column(nullable = false)
 	private float price;
 	@Column(nullable = false)
-	private long datePurchased;
+	private LocalDate datePurchased;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "category_id", referencedColumnName = "categoryId")
 	private Category category;
 }
