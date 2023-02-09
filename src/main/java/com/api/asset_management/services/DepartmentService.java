@@ -1,4 +1,4 @@
-package com.api.asset_management.model.services;
+package com.api.asset_management.services;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.asset_management.model.Department;
-import com.api.asset_management.model.repository.DepartmentRepository;
+import com.api.asset_management.payload.DepartmentRequest;
+import com.api.asset_management.repository.DepartmentRepository;
 
 @Service
 public class DepartmentService {
@@ -28,7 +29,9 @@ public class DepartmentService {
 		return null;
 	}
 
-	public void addDepartment(Department department) {
-		departmentRepository.save(department);
+	public void addDepartment(DepartmentRequest department) {
+		Department dept = Department.builder().departmentName(department.getDepartmentName())
+				.description(department.getDescription()).build();
+		departmentRepository.save(dept);
 	}
 }

@@ -1,4 +1,4 @@
-package com.api.asset_management.model.services;
+package com.api.asset_management.services;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.asset_management.model.Branch;
-import com.api.asset_management.model.repository.BranchRepository;
+import com.api.asset_management.payload.BranchRequest;
+import com.api.asset_management.repository.BranchRepository;
 
 @Service
 public class BranchService {
@@ -22,12 +23,12 @@ public class BranchService {
 		return branchRepository.findByUuid(branchId);
 	}
 
-	public Branch deleteBranch(UUID branchId) {
+	public void deleteBranch(UUID branchId) {
 		branchRepository.deleteByUuid(branchId);
-		return null;
 	}
 
-	public void addBranch(Branch branch) {
-		branchRepository.save(branch);
+	public void addBranch(BranchRequest branch) {
+		Branch branch1 = Branch.builder().contact(branch.getContact()).location(branch.getLocation()).build();
+		branchRepository.save(branch1);
 	}
 }

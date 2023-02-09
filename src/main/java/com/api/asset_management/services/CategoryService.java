@@ -1,4 +1,4 @@
-package com.api.asset_management.model.services;
+package com.api.asset_management.services;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.asset_management.model.Category;
-import com.api.asset_management.model.repository.CategoryRepository;
+import com.api.asset_management.payload.CategoryRequest;
+import com.api.asset_management.repository.CategoryRepository;
 
 @Service
 public class CategoryService {
@@ -27,7 +28,9 @@ public class CategoryService {
 		return null;
 	}
 
-	public void addCategory(Category category) {
-		categoryRepository.save(category);
+	public void addCategory(CategoryRequest category) {
+		Category cat = Category.builder().categoryName(category.getCategoryName())
+				.description(category.getDescription()).build();
+		categoryRepository.save(cat);
 	}
 }
