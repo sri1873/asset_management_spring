@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.asset_management.model.AssetUser;
 import com.api.asset_management.model.Branch;
@@ -41,7 +42,7 @@ public class EmployeeService {
 	private AssetUserRepository assetUserRepository;
 
 	public List<Employee> getAllEmployee() {
-		return employeeRepository.findAll();
+		return employeeRepository.getAllemps();
 	}
 
 	public Employee getAllEmployeeById(String employeeId) {
@@ -51,6 +52,7 @@ public class EmployeeService {
 		return emp.get();
 	}
 
+	@Transactional
 	public Employee deleteEmployee(String employeeId) {
 		employeeRepository.deleteByEmployeeId(employeeId);
 		return null;

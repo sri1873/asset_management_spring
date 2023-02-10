@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.asset_management.model.Department;
 import com.api.asset_management.payload.DepartmentRequest;
@@ -24,6 +25,7 @@ public class DepartmentService {
 		return departmentRepository.findByUuid(departmentId);
 	}
 
+	@Transactional
 	public Department deleteDepartment(UUID departmentId) {
 		departmentRepository.deleteByUuid(departmentId);
 		return null;

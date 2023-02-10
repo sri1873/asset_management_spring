@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.asset_management.model.Category;
 import com.api.asset_management.payload.CategoryRequest;
@@ -23,9 +24,9 @@ public class CategoryService {
 		return categoryRepository.findByUuid(categoryId);
 	}
 
-	public Category deleteCategory(UUID categoryId) {
+	@Transactional
+	public void deleteCategory(UUID categoryId) {
 		categoryRepository.deleteByUuid(categoryId);
-		return null;
 	}
 
 	public void addCategory(CategoryRequest category) {

@@ -23,14 +23,9 @@ public class ItemRequest {
 	private String itemName;
 	@NotBlank(message = "serialNumber should not be blank or null")
 	private String serialNumber;
-	@NotBlank(message = "status should not be blank or null")
-	private String status;
-	@NotBlank(message = "price should not be blank or null")
 	private float price;
-	@NotBlank(message = "datePurchased should not be blank or null")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate datePurchased;
-	@NotBlank(message = "categoryId should not be blank or null")
 	private UUID categoryId;
 }

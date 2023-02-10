@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +32,7 @@ public class AssetUser {
 	@Column(nullable = false)
 	private String password;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "user")
 	private Employee employee;
 }

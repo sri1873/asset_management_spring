@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.asset_management.model.Item;
 import com.api.asset_management.model.ItemAssign;
@@ -33,6 +34,7 @@ public class ItemReturnService {
 		return itemReturnRepository.findByUuid(itemReturnId);
 	}
 
+	@Transactional
 	public ItemReturn deleteItemReturn(UUID itemReturnId) {
 		itemReturnRepository.deleteByUuid(itemReturnId);
 		return null;

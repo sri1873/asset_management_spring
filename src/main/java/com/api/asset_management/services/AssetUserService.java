@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.asset_management.model.AssetUser;
 import com.api.asset_management.payload.AssetUserRequest;
@@ -24,6 +25,7 @@ public class AssetUserService {
 		return assetUserRepository.findByUuid(assetUserId);
 	}
 
+	@Transactional
 	public AssetUser deleteAssetUser(UUID assetUserId) {
 		assetUserRepository.deleteByUuid(assetUserId);
 		return null;

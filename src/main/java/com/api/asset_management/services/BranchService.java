@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.asset_management.model.Branch;
 import com.api.asset_management.payload.BranchRequest;
@@ -23,6 +24,7 @@ public class BranchService {
 		return branchRepository.findByUuid(branchId);
 	}
 
+	@Transactional
 	public void deleteBranch(UUID branchId) {
 		branchRepository.deleteByUuid(branchId);
 	}

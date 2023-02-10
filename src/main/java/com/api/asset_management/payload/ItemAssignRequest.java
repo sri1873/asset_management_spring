@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ItemAssignRequest {
-	@NotBlank(message = "dateAssigned should not be blank or null")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dateAssigned;
@@ -27,6 +26,5 @@ public class ItemAssignRequest {
 	private String remarks;
 	@NotBlank(message = "employeeId should not be blank or null")
 	private String employeeId;
-	@NotBlank(message = "itemId should not be blank or null")
 	private UUID itemId;
 }

@@ -1,6 +1,5 @@
 package com.api.asset_management.payload;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +17,5 @@ public class BranchRequest {
 	private String location;
 	@NotNull(message = "contact should not be null and should be 10 digits only")
 	@Min(value = 10)
-	@Max(value = 10)
 	private long contact;
 }
