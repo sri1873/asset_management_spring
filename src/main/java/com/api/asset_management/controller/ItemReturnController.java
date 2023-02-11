@@ -1,11 +1,12 @@
 package com.api.asset_management.controller;
 
-import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.asset_management.model.ItemReturn;
+import com.api.asset_management.payload.ApiResponse;
 import com.api.asset_management.payload.ItemReturnRequest;
 import com.api.asset_management.services.ItemReturnService;
 
@@ -24,18 +26,20 @@ public class ItemReturnController {
 	private ItemReturnService itemReturnService;
 
 	@GetMapping("/getAllItemReturn")
-	public List<ItemReturn> getAllItemReturn() {
-		return itemReturnService.getAllItemReturn();
+	public ResponseEntity<ApiResponse> getAllItemReturn() {
+		ApiResponse itms = itemReturnService.getAllItemReturn();
+		return new ResponseEntity<>(itms, HttpStatus.OK);
 	}
 
 	@GetMapping("/getItemReturnById/{itemReturnId}")
-	public ItemReturn getItemReturnById(@PathVariable UUID itemReturnId) {
-		return itemReturnService.getItemReturnById(itemReturnId);
+	public ResponseEntity<ApiResponse> getItemReturnById(@PathVariable UUID itemReturnId) {
+		ApiResponse itm = itemReturnService.getItemReturnById(itemReturnId);
+		return new ResponseEntity<>(itm, HttpStatus.OK);
 	}
 
 	@PostMapping("/addItemReturn")
-	public void addItemReturn(@Valid @RequestBody ItemReturnRequest itemReturn) {
-		itemReturnService.addItemReturn(itemReturn);
+	public ResponseEntity<ItemReturn> addItemReturn(@Valid @RequestBody ItemReturnRequest itemReturn) {
+		return new ResponseEntity<>(itemReturnService.addItemReturn(itemReturn), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/deleteItemReturn/{itemReturnId}")

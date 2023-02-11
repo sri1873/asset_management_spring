@@ -1,5 +1,6 @@
 package com.api.asset_management.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,7 @@ import com.api.asset_management.model.ItemAssign;
 @Repository
 public interface ItemAssignRepository extends JpaRepository<ItemAssign, UUID> {
 	@Query(value = "SELECT * FROM item_assign i where i.assignment_id =?1", nativeQuery = true)
-	ItemAssign findByUuid(UUID branchId);
+	Optional<ItemAssign> findByUuid(UUID branchId);
 
 	@Modifying
 	@Query(value = "DELETE FROM item_assign i where i.assignment_id =?1", nativeQuery = true)

@@ -24,5 +24,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
 	@Modifying
 	@Query(value = "Select * from item_assign i  join item j on i.item_id = j.item_id where i.employee_id = ?1", nativeQuery = true)
-	Item assignedItems(String employeeId);
+	Optional<List<Item>> assignedItems(String employeeId);
 }

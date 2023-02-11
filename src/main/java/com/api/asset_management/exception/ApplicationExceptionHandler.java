@@ -53,4 +53,14 @@ public class ApplicationExceptionHandler {
 				.status(HttpStatus.BAD_REQUEST).success(Boolean.FALSE).build();
 		return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(IllegalArgumentException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<ApiResponse> illegalArgumentExceptionHandler(IllegalArgumentException exception) {
+
+		ApiResponse apiResponse = ApiResponse.builder().data(new ArrayList<>())
+				.errors(Arrays.asList(exception.getLocalizedMessage())).message(exception.getMessage())
+				.status(HttpStatus.BAD_REQUEST).success(Boolean.FALSE).build();
+		return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
+	}
 }
