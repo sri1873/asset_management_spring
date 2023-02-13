@@ -26,6 +26,9 @@ public class Employee {
 
 	@Id
 	private String employeeId;
+	//	@Id
+	//	@Builder.Default
+	//	private UUID employeeId = UUID.randomUUID();
 	@Column(nullable = false)
 	private String firstName;
 	@Column(nullable = false)
